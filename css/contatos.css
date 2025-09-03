@@ -1,0 +1,111 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #eafae9; 
+    color: #2d2d2d;
+    overflow-x: hidden;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    backdrop-filter: brightness(0.5);
+    padding: 20px; 
+     background-image: url('../img/fundoentrar.jpg'); 
+}
+
+header {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #366b38;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px; 
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+section {
+    max-width: 700px; 
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; 
+    width: 100%; 
+}
+
+h2 {
+    color: #4abe4f;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.input-field {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #1f6823;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #1b5e1e;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+button {
+    background-color: #2e7d32;
+    color: white;
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #1c5e29;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #555;
+}
+
+.footer a {
+    color: #2e7d32;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

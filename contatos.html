@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato</title>
+  <link rel="stylesheet" href="./css/contatos.css">
+  <link rel="stylesheet" href="./css/nav.css">
+  <link rel="stylesheet" href="./css/responsivo.css">
+  
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="./img/novalogo.png" alt="logo">
+        </div>
+        <div class="alinhamento">
+              <ul>
+                  <ul aligl="left"><a href="./index.html">Home</a></ul> 
+                  <ul aligl="center"><a href="./quemsomos.html">Quem somos</a></ul>
+                  <ul aligl="right" ><a href="./contatos.html">Contato</a></ul>
+                  <ul><a href="./doacao.html">Doe</a></ul>
+                  <ul aligl="right" ><a href="./entrar.html">Entrar</a></ul>
+ 
+              </ul>
+          
+      </div>
+     </nav>
+
+<header>
+  <h1>Entre em Contato Conosco</h1>
+</header>
+
+<section>
+  <h2>Preencha o Formulário</h2>
+  <form action="#" method="post">
+    
+    <div class="input-field">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+    </div>
+    
+    <div class="input-field">
+      <label for="sobrenome">Sobrenome</label>
+      <input type="text" id="sobrenome" name="sobrenome" required placeholder="Seu sobrenome">
+    </div>
+    
+    <div class="input-field">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" required placeholder="Seu melhor e-mail">
+    </div>
+    
+    <div class="input-field">
+      <label for="mensagem">Mensagem</label>
+      <textarea id="mensagem" name="mensagem" required placeholder="Deixe sua mensagem aqui..."></textarea>
+    </div>
+
+    <button type="submit">Enviar Mensagem</button>
+  </form>
+</section>
+
+<div class="footer">
+  <p>&copy; 2025 - Todos os direitos reservados | <a href="mailto:contato@exemplo.com">institutotempodeflorescer@gmail.com</a></p>
+</div>
+
+<script>
+  const form = document.querySelector('form');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = {
+      nome: form.nome.value,
+      sobrenome: form.sobrenome.value,
+      email: form.email.value,
+      mensagem: form.mensagem.value
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert('Mensagem enviada com sucesso!');
+        form.reset();
+      } else {
+        alert('Erro ao enviar mensagem');
+      }
+    } catch (error) {
+      alert('Erro na conexão com o servidor');
+    }
+  });
+</script>
+
+</body>
+</html>

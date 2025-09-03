@@ -1,0 +1,436 @@
+/* Estilos Globais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #eafae9; /* Fundo verde clarinho para o body */
+    color: #2d2d2d;
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos para Cabeçalho e Rodapé */
+header, footer {
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.85); /* Fundo branco translúcido */
+    backdrop-filter: blur(100px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+    padding: 0 20px;
+}
+
+header {
+    top: 0;
+    position: sticky;
+}
+
+footer {
+    bottom: 0;
+    margin-top: auto;
+}
+
+/* Estilos para o Conteúdo Principal - AGORA LARGURA TOTAL NOVAMENTE */
+main {
+    flex-grow: 1;
+    padding: 90px 0 100px 0; /* Padding top/bottom mantido, left/right zerado para largura total */
+    max-width: none; /* REMOVIDO: max-width */
+    margin: 0; /* REMOVIDO: margin: auto; para ocupar a tela inteira */
+    position: relative;
+    width: 100%; /* Garante que o main ocupe a largura total */
+}
+
+/* Estilos Comuns para Seções - COM QUADRADOS E PADDING LATERAL PERCENTUAL */
+section {
+    margin: 30px 0; /* Espaçamento entre as seções */
+    padding: 30px 5%; /* Padding lateral percentual para manter espaçamento nas bordas da tela */
+    border-radius: 12px; /* Borda arredondada */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1); /* Sombra suave */
+    background-color: #ffffff; /* Fundo branco para a maioria das seções */
+    text-align: center; /* Centraliza o conteúdo por padrão */
+}
+
+/* Estilo específico para a seção com efeito de blur */
+.blur-section {
+    background-color: rgba(255, 255, 255, 0.85); /* Mantém o fundo translúcido para o blur */
+    backdrop-filter: blur(100px);
+}
+
+/* Estilo para a caixa verde de destaque */
+.verde-box {
+    background-color: #2e7d32; /* Verde escuro */
+    color: white; /* Texto branco */
+    padding: 30px 5%; /* Padding lateral percentual */
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Estilos para títulos h2 */
+h2 {
+    color: #2e7d32; /* Verde escuro para títulos */
+    margin-bottom: 15px; /* Espaço para o título */
+    font-size: 1.8em;
+}
+
+/* Sobrescreve a cor do h2 dentro da .verde-box para branco */
+.verde-box h2 {
+    color: white;
+}
+
+/* Estilos para parágrafos */
+p {
+    margin-top: 10px;
+    line-height: 1.6;
+    font-size: 1em;
+    max-width: 800px; /* Limita a largura dos parágrafos para melhor leitura em telas muito largas */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Garante que o parágrafo dentro da .verde-box também seja branco */
+.verde-box p {
+    color: white;
+}
+
+/* --- Estilos para a Seção 'Nossa Jornada e Chamado' --- */
+.our-journey-section {
+    background-color: #ffffff; /* Fundo branco da seção */
+    text-align: center;
+    margin: 30px 0;
+    padding: 30px 5%; /* Padding lateral percentual */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.our-journey-section h2 {
+    color: #2e7d32;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.journey-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaçamento entre os cards */
+    justify-content: center;
+    align-items: stretch;
+}
+
+.journey-card {
+    flex: 1 1 250px;
+    background-color: #d1f7d1; /* Verde claro para o fundo do card */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journey-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.journey-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto 15px auto;
+    background-color: #2e7d32;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.journey-card h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.journey-card p {
+    color: #2d2d2d;
+    font-size: 1em;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 15px;
+    max-width: none; /* Parágrafo dentro do card não precisa de max-width */
+}
+
+.cta-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background-color: #388e3c;
+    transform: translateY(-2px);
+}
+
+/* --- Estilos para a seção "O Que Fazemos?" --- */
+.what-we-do {
+    background-color: #ffffff;
+    text-align: left;
+    padding: 30px 5%; /* Padding lateral percentual */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.what-we-do h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    color: #2e7d32;
+}
+
+.content-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; /* Centraliza os blocos dentro da linha */
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.content-row:last-of-type {
+    margin-bottom: 0;
+}
+
+.text-block {
+    flex: 1 1 45%;
+    min-width: 300px;
+}
+
+.text-block p {
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #2d2d2d;
+    margin-top: 0;
+    text-align: left;
+    max-width: none; /* Parágrafo dentro do bloco não precisa de max-width */
+}
+
+.image-block {
+    flex: 1 1 45%;
+    min-width: 300px;
+}
+
+.image-block img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0;
+}
+
+/* Para inverter a ordem da segunda linha */
+.content-row.reverse-row {
+    flex-direction: row-reverse;
+}
+
+/* --- Estilos para a seção "Nossos Pilares" (NOVA SEÇÃO) --- */
+.our-pillars-section {
+    background-color: #2e7d32;
+    color: white;
+    padding: 40px 5%; /* Padding lateral percentual */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    margin: 30px 0;
+    text-align: center;
+}
+
+.our-pillars-section h2 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.pillars-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; /* Centraliza os blocos dentro da linha */
+    gap: 30px;
+}
+
+.pillars-content .text-block {
+    flex: 1 1 45%;
+    min-width: 300px;
+    text-align: left;
+}
+
+.pillars-content .text-block p {
+    color: white;
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-top: 0;
+    max-width: none; /* Parágrafo dentro do bloco não precisa de max-width */
+}
+
+.pillars-content .image-block {
+    flex: 1 1 45%;
+    min-width: 300px;
+}
+
+.pillars-content .image-block img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- Estilos para a seção "Projetos em Destaque" (verde-box) --- */
+.highlighted-projects {
+    text-align: center;
+    padding: 35px 5%; /* Padding lateral percentual */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #2e7d32;
+    color: white;
+}
+
+.highlighted-projects p {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Estilos para a seção final de "Chamada para Ação" --- */
+.call-to-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+    padding: 30px 5%; /* Padding lateral percentual */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.call-to-action img {
+    max-width: 70%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.call-to-action p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #2e7d32;
+    max-width: 700px; /* Limita a largura para melhor leitura */
+}
+
+/* --- Responsividade Geral e Específica --- */
+@media (max-width: 768px) {
+    main {
+        padding: 70px 0 80px 0; /* Padding top/bottom mantido, lateral zerado */
+    }
+
+    section {
+        padding: 25px 4%; /* Reduz padding lateral para telas menores */
+        margin: 20px 0;
+    }
+
+    .blur-section, .verde-box, .our-journey-section, .what-we-do, .our-pillars-section, .highlighted-projects, .call-to-action {
+        padding: 25px 4%; /* Aplica padding lateral percentual também para essas classes */
+    }
+
+    h2 {
+        font-size: 1.6em;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 0.95em;
+    }
+
+    /* Ajustes para 'Nossa Jornada e Chamado' */
+    .journey-card {
+        flex: 1 1 calc(50% - 10px); /* Dois cards por linha */
+    }
+
+    /* Ajustes para 'O Que Fazemos?' e 'Nossos Pilares' */
+    .content-row, .pillars-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .text-block, .image-block {
+        flex: 1 1 100%;
+        min-width: unset;
+    }
+
+    .text-block p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Ajustes para o botão CTA */
+    .cta-button {
+        padding: 8px 15px;
+        font-size: 0.95em;
+    }
+
+    .call-to-action img {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 60px 0 70px 0;
+    }
+
+    section {
+        padding: 20px 3%;
+        margin: 15px 0;
+    }
+
+    .blur-section, .verde-box, .our-journey-section, .what-we-do, .our-pillars-section, .highlighted-projects, .call-to-action {
+        padding: 20px 3%;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    .journey-card {
+        flex: 1 1 100%;
+    }
+}
+
+/* Estilos para o conteúdo do rodapé */
+.footer-content {
+    font-size: 0.9em;
+    color: #555;
+}

@@ -1,0 +1,183 @@
+
+body {
+    
+    background-color: #f9fbf2; 
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    flex: 1;
+    min-height: 100vh;
+    flex-direction: column; 
+    background-image: url 
+}
+
+.alinhamentocontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    flex: 1;
+}
+
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px; 
+    margin-bottom: 20px; 
+    border: 1px solid #d3e4cd; 
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.section-header img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+h2 {
+    color: #2e8b57; 
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #3d593d;
+}
+
+input,
+select,
+textarea {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.radio-group input {
+    width: auto;
+    margin-right: 5px;
+}
+
+.valores-doacao {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.value-button {
+    padding: 10px 15px;
+    border: 1px solid #3cb371; 
+    background-color: #e0eee0; 
+    color: #3cb371;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.value-button.selected {
+    background-color: #3cb371;
+    color: white;
+}
+
+.outro-valor {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.outro-valor input {
+    width: 120px;
+}
+
+.frequencia-doacao {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.frequency-button {
+    padding: 10px 20px;
+    border: 1px solid #3cb371;
+    background-color: #e0eee0;
+    color: #3cb371;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.frequency-button.selected {
+    background-color: #3cb371;
+    color: white;
+}
+
+.primary-button {
+    background-color: #3cb371; 
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.primary-button:hover {
+    background-color: #2e8b57;
+}
+
+.secondary-button {
+    background-color: #a9a9a9; 
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.secondary-button:hover {
+    background-color: #808080;
+}
+
+.form-group a {
+    color: #3cb371;
+    text-decoration: none;
+}
+
+.form-group a:hover {
+    text-decoration: underline;
+}
