@@ -253,73 +253,24 @@ p {
     flex-direction: row-reverse;
 }
 
-/* --- Estilos para a seção "Nossos Pilares" (NOVA SEÇÃO) --- */
-.our-pillars-section {
-    background-color: #2e7d32;
-    color: white;
-    padding: 40px 5%; /* Padding lateral percentual */
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    margin: 30px 0;
+
+/* --- Estilos para a seção unificada "Nossos Pilares" e "Projetos em Destaque" --- */
+.combined-section {
+    padding: 50px 5%; /* Mantém o espaçamento interno para o conteúdo */
+    border-radius: 0; /* Remove as bordas arredondadas para ocupar a tela toda */
+    box-shadow: none; /* Remove a sombra para dar a sensação de largura total */
+    background-color: #ffffff;
     text-align: center;
 }
 
-.our-pillars-section h2 {
-    color: white;
-    margin-bottom: 30px;
-    font-size: 2em;
+.combined-section hr.section-divider {
+    border: 0;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 30px auto;
+    width: 50%;
 }
 
-.pillars-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center; /* Centraliza os blocos dentro da linha */
-    gap: 30px;
-}
-
-.pillars-content .text-block {
-    flex: 1 1 45%;
-    min-width: 300px;
-    text-align: left;
-}
-
-.pillars-content .text-block p {
-    color: white;
-    font-size: 1.05em;
-    line-height: 1.7;
-    margin-top: 0;
-    max-width: none; /* Parágrafo dentro do bloco não precisa de max-width */
-}
-
-.pillars-content .image-block {
-    flex: 1 1 45%;
-    min-width: 300px;
-}
-
-.pillars-content .image-block img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* --- Estilos para a seção "Projetos em Destaque" (verde-box) --- */
-.highlighted-projects {
-    text-align: center;
-    padding: 35px 5%; /* Padding lateral percentual */
-    margin-top: 30px;
-    margin-bottom: 30px;
-    background-color: #2e7d32;
-    color: white;
-}
-
-.highlighted-projects p {
-    font-size: 1.1em;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 /* --- Estilos para a seção final de "Chamada para Ação" --- */
 .call-to-action {
