@@ -67,6 +67,7 @@ textarea {
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
+    
 }
 
 textarea {
@@ -180,4 +181,14 @@ textarea {
 
 .form-group a:hover {
     text-decoration: underline;
+}
+
+.checkbox-group {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#proximo-passo {
+    display: block;
+    margin: 0 auto;
 }

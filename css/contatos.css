@@ -15,10 +15,10 @@ body {
 
 header {
     text-align: center;
-    padding: 50px 0;
+    padding: 0px 0;
     background-color: #366b38;
     color: white;
-    border-radius: 12px;
+    border-radius: 0px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px; 
 }

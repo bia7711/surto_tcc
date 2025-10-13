@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Adicionado: Referência ao checkbox dos termos
+    const checkboxTermos = document.getElementById('termos'); 
+    
+    // Elementos existentes
     const formDoador = document.getElementById('form-doador');
     const dadosDoadorSection = document.getElementById('dados-doador');
     const dadosDoacaoSection = document.getElementById('dados-doacao');
@@ -12,14 +16,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const frequenciaDoacaoBotoes = document.querySelectorAll('.frequencia-doacao .frequency-button');
     const frequenciaDoacaoInput = document.getElementById('frequencia-doacao');
 
+    // =============================================================
+    // CORREÇÃO: Lógica para Habilitar/Desabilitar o botão (Passo 1)
+    // =============================================================
+    
+    // Estado inicial: Se o botão estiver com 'disabled' no HTML, essa linha apenas reforça.
+    proximoPassoButton.disabled = !checkboxTermos.checked;
+
+    // Habilita/Desabilita o botão ao mudar o estado do checkbox
+    checkboxTermos.addEventListener('change', function() {
+        proximoPassoButton.disabled = !this.checked;
+    });
+
+    // =============================================================
+    // CORREÇÃO: Lógica do botão Próximo Passo
+    // =============================================================
     proximoPassoButton.addEventListener('click', function() {
+        // Verifica se os termos foram aceitos
+        if (!checkboxTermos.checked) {
+            alert('Por favor, aceite os Termos e Condições para prosseguir.');
+            return; // Impede o avanço
+        }
+
+        // Verifica a validade dos outros campos do formulário
         if (formDoador.checkValidity()) {
             dadosDoadorSection.style.display = 'none';
             dadosDoacaoSection.style.display = 'block';
         } else {
+            // Exibe as mensagens de erro nativas do navegador
             formDoador.reportValidity();
         }
     });
+
+    // =============================================================
+    // RESTANTE DO CÓDIGO (MANTIDO E CORRETO)
+    // =============================================================
 
     voltarPassoButton.addEventListener('click', function() {
         dadosDoacaoSection.style.display = 'none';
@@ -45,7 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     sexoOutroRadio.addEventListener('change', function() {
+        // Garante que o campo de texto apareça/desapareça e limpa se não estiver selecionado
         outroSexoInput.style.display = this.checked ? 'block' : 'none';
+        outroSexoInput.required = this.checked; // Adiciona/remove o 'required'
         if (!this.checked) {
             outroSexoInput.value = '';
         }
@@ -61,6 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('form-doacao').addEventListener('submit', function(event) {
         event.preventDefault();
+        
+        // Verificação adicional para garantir que o valor da doação foi selecionado/inserido
+        if (!valorDoacaoInput.value) {
+            alert('Por favor, selecione ou digite um valor para doação.');
+            return;
+        }
+
         const formDataDoador = new FormData(document.getElementById('form-doador'));
         const formDataDoacao = new FormData(this);
 
@@ -71,7 +111,5 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Dados da Doação:', dadosDoacao);
 
         alert('Doação simulada com sucesso (dados no console)!');
-        
     });
 });
-
