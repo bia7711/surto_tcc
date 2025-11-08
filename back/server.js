@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 
 // Define a porta onde o servidor vai rodar
-const PORT = 3000;
+const PORT = 3001;
 
 // Configura uma rota de teste (GET na raiz "/")
 app.get('/', (req, res) => {

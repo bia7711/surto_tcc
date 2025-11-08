@@ -1,194 +1,301 @@
+/* Variáveis de Cores */
+:root {
+    --primary-green: #558045; /* Verde escuro (Botões, Textos) */
+    --light-green: #a7d977;  /* Verde claro (Seleção de valor ativo) */
+    --background-color: #f0f0f0; /* Fundo cinza/branco da página */
+    --card-bg: #ffffff; /* Fundo do cartão */
+    --text-dark: #333333;
+    /* Gradiente para a borda do cartão */
+    --border-gradient: linear-gradient(to top right, #ffcc00, #558045, #a7d977);
+}
 
 body {
-    
-    background-color: #f9fbf2; 
-    display: flex;
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
     margin: 0;
-    justify-content: center;
-    flex: 1;
-    min-height: 100vh;
-    flex-direction: column; 
-    background-image: url 
-}
-
-.alinhamentocontainer{
+    padding-top: 60px; /* Para a NAV */
     display: flex;
     justify-content: center;
-    align-items: center ;
-    flex: 1;
-}
-
-
-.container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 500px; 
-    margin-bottom: 20px; 
-    border: 1px solid #d3e4cd; 
-}
-
-.section-header {
-    display: flex;
     align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Container Principal (O Cartão) --- */
+.alinhamentocontainer {
+    display: flex;
     justify-content: center;
+    width: 100%;
+}
+
+.donation-container {
+    width: 90%;
+    max-width: 650px;
+    background-color: var(--card-bg);
+    border-radius: 40px; /* Borda bem arredondada */
+    padding: 20px 40px; /* Padding interno */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    
+    /* Cria a borda colorida usando o border-image */
+    border: 5px solid transparent; 
+    border-image: var(--border-gradient);
+    border-image-slice: 1;
+    position: relative; /* CRUCIAL: Ponto de referência para posicionar as plantas */
+    margin: 80px 0 40px; /* Margem para compensar o ícone que sai do topo */
+}
+
+/* --- Imagens Decorativas das Plantas --- */
+.plant-deco {
+    position: absolute; 
+    width: 150px;      /* Ajuste o tamanho */
+    height: auto;
+    z-index: 10;       /* Garante que a planta fique visível */
+    pointer-events: none; /* Garante que as plantas não atrapalhem o clique */
+}
+
+/* Posição da Planta Esquerda */
+.plant-deco.left {
+    top: 50px;    /* Ajuste para mover para cima/baixo */
+    left: -75px;  /* Ajuste para mover para a esquerda, fora da borda do container */
+    transform: rotate(10deg); 
+}
+
+/* Posição da Planta Direita */
+.plant-deco.right {
+    bottom: 0px;  /* Ajuste para mover para cima/baixo (colocando no rodapé, como na imagem) */
+    right: -75px; /* Ajuste para mover para a direita */
+    transform: rotate(-10deg); 
+}
+
+
+/* --- Header e Ícone Circular --- */
+.card-header {
+    text-align: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.logo-circle {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    border: 5px solid var(--primary-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -75px auto 10px; /* Puxa para cima para sair do cartão */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo-circle img {
+    width: 60px;
+    height: 60px;
+}
+
+.title-main {
+    font-size: 1.8em;
+    color: var(--primary-green);
+    margin-top: 5px;
+}
+
+/* --- Indicador de Passos --- */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 20px;
+    font-size: 1em;
 }
 
-.section-header img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+.step-indicator span {
+    color: #999;
+    font-weight: bold;
 }
 
-h2 {
-    color: #2e8b57; 
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 24px;
+.step-indicator span.active {
+    color: var(--primary-green);
+    text-decoration: underline;
+}
+
+/* --- Layout de Passos e Formulário --- */
+.form-step {
+    padding: 0;
+}
+
+.form-step:not(.active) {
+    display: none; /* Esconde o passo inativo */
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+/* Onde a tela é dividida, como Data de Nascimento e Sexo */
+.form-row.split-half .input-group {
+    flex: 0.5;
+}
+
+.form-row .input-group, .input-group {
+    flex: 1;
+    margin-bottom: 15px;
 }
 
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #3d593d;
+    color: var(--text-dark);
 }
 
-input,
-select,
-textarea {
-    width: calc(100% - 16px);
-    padding: 8px;
-    margin-bottom: 10px;
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="date"], 
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 16px;
-    
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
 }
 
-textarea {
-    min-height: 80px;
-    resize: vertical;
-}
-
-.radio-group {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 10px;
-    align-items: center;
-}
-
-.radio-group input {
-    width: auto;
-    margin-right: 5px;
-}
-
-.valores-doacao {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.value-button {
-    padding: 10px 15px;
-    border: 1px solid #3cb371; 
-    background-color: #e0eee0; 
-    color: #3cb371;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.value-button.selected {
-    background-color: #3cb371;
-    color: white;
-}
-
-.outro-valor {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.outro-valor input {
-    width: 120px;
-}
-
-.frequencia-doacao {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.frequency-button {
-    padding: 10px 20px;
-    border: 1px solid #3cb371;
-    background-color: #e0eee0;
-    color: #3cb371;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.frequency-button.selected {
-    background-color: #3cb371;
-    color: white;
-}
-
-.primary-button {
-    background-color: #3cb371; 
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.primary-button:hover {
-    background-color: #2e8b57;
-}
-
-.secondary-button {
-    background-color: #a9a9a9; 
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.secondary-button:hover {
-    background-color: #808080;
-}
-
-.form-group a {
-    color: #3cb371;
-    text-decoration: none;
-}
-
-.form-group a:hover {
-    text-decoration: underline;
-}
-
+/* Checkboxes de Conformidade */
 .checkbox-group {
-    text-align: center;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+.checkbox-group label {
+    font-weight: normal;
+}
+.checkbox-group a {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: bold;
+}
+.info-icon {
+    font-weight: bold;
+    color: #666;
+    cursor: help;
 }
 
-#proximo-passo {
-    display: block;
-    margin: 0 auto;
+/* --- PASSO 2: Seleção de Valor (Grid) --- */
+.amount-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+
+.amount-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid var(--primary-green);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    background-color: white;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.amount-grid input[type="radio"] {
+    display: none;
+}
+
+/* Estilo para valor ativo/selecionado */
+.amount-grid input[type="radio"]:checked + label {
+    background-color: var(--light-green); 
+    color: var(--primary-green);
+    border-color: var(--light-green);
+}
+
+/* Tipo de Doação (Mensal/Única) */
+.donation-type-group {
+    display: flex;
+    justify-content: flex-end; 
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.type-btn {
+    padding: 15px 30px;
+    border: 2px solid var(--primary-green);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.type-btn.mensal {
+    background-color: var(--primary-green);
+    color: white;
+}
+.type-btn.unica {
+    background-color: white;
+    color: var(--primary-green);
+}
+.type-btn.active {
+    box-shadow: 0 0 5px var(--primary-green);
+}
+
+/* --- Botões de Ação --- */
+.submit-btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 30px;
+    background-color: var(--primary-green);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s;
+}
+
+.next-btn {
+    float: right; 
+}
+
+.prev-btn {
+    background-color: #ccc;
+    color: #333;
+    margin-right: 15px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .donation-container {
+        padding: 20px;
+        margin: 60px 10px 20px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-row.split-half .input-group {
+        flex: 1;
+    }
+    .amount-grid {
+        grid-template-columns: 1fr;
+    }
+    .plant-deco {
+        width: 100px; /* Reduz o tamanho das plantas em mobile */
+        display: none; /* Opcional: esconder as plantas em telas muito pequenas */
+    }
 }

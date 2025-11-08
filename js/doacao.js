@@ -1,115 +1,128 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Adicionado: Referência ao checkbox dos termos
-    const checkboxTermos = document.getElementById('termos'); 
+document.addEventListener('DOMContentLoaded', () => {
+    // Referências aos elementos de controle
+    const stepOne = document.getElementById('step-one');
+    const stepTwo = document.getElementById('step-two');
+    const step1Title = document.getElementById('step1-title');
+    const step2Title = document.getElementById('step2-title');
+    const nextButton = document.getElementById('next-to-step2');
+    const prevButton = document.getElementById('prev-to-step1');
+    const formPessoal = document.getElementById('form-pessoal');
+    const formPagamento = document.getElementById('form-pagamento');
+    const hiddenFrequencia = document.getElementById('frequencia-doacao');
+
+    // Referências aos elementos de valor e frequência
+    const amountRadios = document.querySelectorAll('input[name="valor"]');
+    const otherAmountField = document.getElementById('other-amount-field');
+    const typeMensal = document.getElementById('type-mensal');
+    const typeUnica = document.getElementById('type-unica');
+
+    // --- A. CONTROLE DE PASSOS ---
     
-    // Elementos existentes
-    const formDoador = document.getElementById('form-doador');
-    const dadosDoadorSection = document.getElementById('dados-doador');
-    const dadosDoacaoSection = document.getElementById('dados-doacao');
-    const proximoPassoButton = document.getElementById('proximo-passo');
-    const voltarPassoButton = document.getElementById('voltar-passo');
-    const valoresDoacaoBotoes = document.querySelectorAll('.valores-doacao .value-button');
-    const outroValorInput = document.getElementById('outro-valor-input');
-    const valorDoacaoInput = document.getElementById('valor-doacao');
-    const sexoOutroRadio = document.getElementById('outro');
-    const outroSexoInput = document.getElementById('outro-sexo');
-    const frequenciaDoacaoBotoes = document.querySelectorAll('.frequencia-doacao .frequency-button');
-    const frequenciaDoacaoInput = document.getElementById('frequencia-doacao');
-
-    // =============================================================
-    // CORREÇÃO: Lógica para Habilitar/Desabilitar o botão (Passo 1)
-    // =============================================================
-    
-    // Estado inicial: Se o botão estiver com 'disabled' no HTML, essa linha apenas reforça.
-    proximoPassoButton.disabled = !checkboxTermos.checked;
-
-    // Habilita/Desabilita o botão ao mudar o estado do checkbox
-    checkboxTermos.addEventListener('change', function() {
-        proximoPassoButton.disabled = !this.checked;
-    });
-
-    // =============================================================
-    // CORREÇÃO: Lógica do botão Próximo Passo
-    // =============================================================
-    proximoPassoButton.addEventListener('click', function() {
-        // Verifica se os termos foram aceitos
-        if (!checkboxTermos.checked) {
-            alert('Por favor, aceite os Termos e Condições para prosseguir.');
-            return; // Impede o avanço
-        }
-
-        // Verifica a validade dos outros campos do formulário
-        if (formDoador.checkValidity()) {
-            dadosDoadorSection.style.display = 'none';
-            dadosDoacaoSection.style.display = 'block';
-        } else {
-            // Exibe as mensagens de erro nativas do navegador
-            formDoador.reportValidity();
-        }
-    });
-
-    // =============================================================
-    // RESTANTE DO CÓDIGO (MANTIDO E CORRETO)
-    // =============================================================
-
-    voltarPassoButton.addEventListener('click', function() {
-        dadosDoacaoSection.style.display = 'none';
-        dadosDoadorSection.style.display = 'block';
-    });
-
-    valoresDoacaoBotoes.forEach(botao => {
-        botao.addEventListener('click', function() {
-            valoresDoacaoBotoes.forEach(btn => btn.classList.remove('selected'));
-            this.classList.add('selected');
-            valorDoacaoInput.value = this.dataset.valor;
-            outroValorInput.value = '';
-        });
-    });
-
-    outroValorInput.addEventListener('input', function() {
-        if (this.value) {
-            valoresDoacaoBotoes.forEach(btn => btn.classList.remove('selected'));
-            valorDoacaoInput.value = this.value;
-        } else if (!document.querySelector('.valores-doacao .value-button.selected')) {
-            valorDoacaoInput.value = '';
-        }
-    });
-
-    sexoOutroRadio.addEventListener('change', function() {
-        // Garante que o campo de texto apareça/desapareça e limpa se não estiver selecionado
-        outroSexoInput.style.display = this.checked ? 'block' : 'none';
-        outroSexoInput.required = this.checked; // Adiciona/remove o 'required'
-        if (!this.checked) {
-            outroSexoInput.value = '';
-        }
-    });
-
-    frequenciaDoacaoBotoes.forEach(botao => {
-        botao.addEventListener('click', function() {
-            frequenciaDoacaoBotoes.forEach(btn => btn.classList.remove('selected'));
-            this.classList.add('selected');
-            frequenciaDoacaoInput.value = this.dataset.frequencia;
-        });
-    });
-
-    document.getElementById('form-doacao').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Verificação adicional para garantir que o valor da doação foi selecionado/inserido
-        if (!valorDoacaoInput.value) {
-            alert('Por favor, selecione ou digite um valor para doação.');
+    // Avançar para o Passo 2
+    nextButton.addEventListener('click', (e) => {
+        // Verifica se o formulário do Passo 1 é válido (campos 'required' preenchidos)
+        if (!formPessoal.checkValidity()) {
+            formPessoal.reportValidity();
             return;
         }
 
-        const formDataDoador = new FormData(document.getElementById('form-doador'));
-        const formDataDoacao = new FormData(this);
-
-        const dadosDoador = Object.fromEntries(formDataDoador.entries());
-        const dadosDoacao = Object.fromEntries(formDataDoacao.entries());
-
-        console.log('Dados do Doador:', dadosDoador);
-        console.log('Dados da Doação:', dadosDoacao);
-
-        alert('Doação simulada com sucesso (dados no console)!');
+        stepOne.classList.remove('active');
+        stepTwo.classList.add('active');
+        step1Title.classList.remove('active');
+        step2Title.classList.add('active');
+        window.scrollTo(0, 0); 
     });
+
+    // Voltar para o Passo 1
+    prevButton.addEventListener('click', () => {
+        stepTwo.classList.remove('active');
+        stepOne.classList.add('active');
+        step2Title.classList.remove('active');
+        step1Title.classList.add('active');
+        window.scrollTo(0, 0); 
+    });
+
+
+    // --- B. LÓGICA DE VALOR E FREQUÊNCIA (UX) ---
+
+    // Lógica do Campo 'Outro Valor'
+    amountRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            if (radio.value === 'outro') {
+                otherAmountField.classList.remove('hidden');
+                document.getElementById('valor-outro').setAttribute('required', 'required');
+            } else {
+                otherAmountField.classList.add('hidden');
+                document.getElementById('valor-outro').removeAttribute('required');
+            }
+        });
+    });
+
+    // Lógica de Frequência (Mensal/Única)
+    typeMensal.addEventListener('click', () => {
+        typeMensal.classList.add('active');
+        typeUnica.classList.remove('active');
+        hiddenFrequencia.value = 'mensal';
+    });
+    
+    typeUnica.addEventListener('click', () => {
+        typeUnica.classList.add('active');
+        typeMensal.classList.remove('active');
+        hiddenFrequencia.value = 'unica';
+    });
+
+
+    // --- C. ENVIO FINAL (Integração com o Back-End) ---
+    formPagamento.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // 1. Coletar e Unir os Dados
+        const dadosPessoais = new FormData(formPessoal);
+        const dadosPagamento = new FormData(formPagamento);
+        
+        const data = {};
+        
+        for (const [key, value] of dadosPessoais.entries()) {
+            data[key] = value;
+        }
+        for (const [key, value] of dadosPagamento.entries()) {
+            data[key] = value;
+        }
+        
+        // 2. Determinar o Valor Final da Doação
+        let valorDoacao = data['valor'];
+        if (valorDoacao === 'outro') {
+            valorDoacao = data['valor-outro'];
+        }
+        data['valorFinal'] = parseFloat(valorDoacao); // Converte para número
+
+        // Remove campos temporários
+        delete data['valor'];
+        delete data['valor-outro'];
+
+
+        try {
+            // CORREÇÃO APLICADA AQUI: Adicionado o parêntese (
+            const response = await fetch('http://localhost:3001/api/doacao', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                alert('Doação realizada com sucesso! Os dados foram enviados para o servidor.');
+                // Resetar formulários e voltar ao passo 1
+                formPessoal.reset();
+                formPagamento.reset();
+                prevButton.click(); // Simula o clique no botão 'Voltar' para retornar ao Passo 1
+                typeUnica.click(); // Garante que a frequência volte a ser 'Única'
+            } else {
+                alert('Erro ao processar doação. Verifique o servidor (porta 3001).');
+            }
+        } catch (error) {
+            console.error('Erro na conexão:', error);
+            alert('Erro na conexão com o servidor de doação. Verifique se o Back-End está rodando.');
+        }
+    });
+
 });
