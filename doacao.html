@@ -1,173 +1,145 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faça sua Doação</title>
-    
-    <!-- Seus links de CSS -->
-    <link rel="stylesheet" href="./css/doacao.css">
+    <title>Doação</title>
+    <link rel="stylesheet" href="./css/doacao.css"> 
     <link rel="stylesheet" href="./css/nav.css">
     <link rel="stylesheet" href="./css/responsivo.css">
-    <!-- O CSS que eu gerei antes (para os estilos do formulário) -->
-    <link rel="stylesheet" href="styles.css"> 
-    
-    <!-- Script do Tailwind (necessário para as classes internas do formulário) -->
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col min-h-screen">
+<body>
     
-    <!-- BLOCO DE NAVEGAÇÃO INSERIDO -->
-    <nav class="w-full bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
-            <div>
-                <!-- O arquivo novalogo.png deve estar em ./img/ -->
-                <img src="./img/novalogo.png" alt="logo" class="h-10"> 
-            </div>
-            <div class="alinhamento">
-                <ul class="flex space-x-6">
-                    <li><a href="./index.html" class="text-gray-700 hover:text-green-600 font-medium">Home</a></li> 
-                    <li><a href="./quemsomos.html" class="text-gray-700 hover:text-green-600 font-medium">Quem somos</a></li>
-                    <li><a href="./contatos.html" class="text-gray-700 hover:text-green-600 font-medium">Contato</a></li>
-                    <li><a href="./doacao.html" class="text-green-600 font-bold border-b-2 border-green-600">Doe</a></li>
-                    <li><a href="./entrarempresas.html" class="text-gray-700 hover:text-green-600 font-medium">Empresas</a></li>
-                </ul>
-            </div>
+    <nav>
+        <div>
+            <img src="./img/novalogo.png" alt="Logo da organização">
+        </div>
+        <div class="alinhamento">
+            <ul>
+                <li><a href="./index.html">Home</a></li> 
+                <li><a href="./quemsomos.html">Quem somos</a></li>
+                <li><a href="./contatos.html">Contato</a></li>
+                <li><a href="./doacao.html">Doe</a></li>
+                <li><a href="./entrar.html">Entrar</a></li>
+                <li><a href="entrarempresas.html">Empresas</a></li> 
+            </ul>
         </div>
     </nav>
-    
-    <!-- CONTEÚDO PRINCIPAL DA DOAÇÃO -->
-    <!-- Adicionado 'flex-grow' para garantir que o card fique centralizado após a nav -->
-    <main class="flex-grow flex items-start justify-center py-10">
-        <div class="w-full max-w-xl mx-4">
-            
-            <header class="mb-8 text-center">
-                <h1 class="text-3xl font-bold text-gray-800">Página de Doação</h1>
-                <p class="text-gray-500">Apoie nosso projeto. Sua contribuição é essencial.</p>
-            </header>
 
-            <!-- CARD PRINCIPAL DE DOAÇÃO -->
-            <div id="donationCard" class="donation-card bg-white rounded-xl p-8 transition-all duration-300">
-                <form id="donationForm">
+    <div class="main-container">
+        <form id="doacaoForm" class="doacao-form">
 
-                    <!-- TÍTULO DA ETAPA E PROGRESSO -->
-                    <div class="mb-6">
-                        <div id="stepTitle" class="text-xl font-semibold text-gray-700 mb-2">
-                            Etapa 1: Seus Dados
-                        </div>
-                        <!-- Barra de Progresso -->
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div id="progressBar" class="bg-green-500 h-2.5 rounded-full transition-all duration-300" style="width: 50%"></div>
-                        </div>
-                    </div>
-
-                    <!-- ETAPA 1: DADOS PESSOAIS -->
-                    <div id="step1" class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Nome Completo -->
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo *</label>
-                                <input type="text" id="name" name="name" required class="w-full custom-input-style mt-1" placeholder="Seu nome">
-                            </div>
-                            <!-- Email -->
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
-                                <input type="email" id="email" name="email" required class="w-full custom-input-style mt-1" placeholder="seu.email@exemplo.com">
-                            </div>
-                        </div>
-
-                        <!-- Telefone -->
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700">Telefone</label>
-                            <input type="tel" id="phone" name="phone" class="w-full custom-input-style mt-1" placeholder="(XX) XXXXX-XXXX">
-                        </div>
-
-                        <!-- CPF/RG -->
-                        <div>
-                            <label for="documentId" class="block text-sm font-medium text-gray-700">CPF ou RG *</label>
-                            <input type="text" id="documentId" name="documentId" required class="w-full custom-input-style mt-1" placeholder="Apenas números">
-                        </div>
-
-                        <!-- Botão Próximo -->
-                        <button type="button" id="nextStepBtn" class="btn-primary w-full text-white font-semibold py-3 rounded-lg mt-6 shadow-md hover:shadow-lg">
-                            Continuar para a Doação
-                        </button>
-                        <p class="text-xs text-gray-500 mt-2 text-center">* Campos obrigatórios</p>
-                    </div>
-
-                    <!-- ETAPA 2: VALOR E PAGAMENTO (INICIALMENTE ESCONDIDA) -->
-                    <div id="step2" class="space-y-6 hidden">
-                        
-                        <!-- Seleção de Valor -->
-                        <div>
-                            <label class="block text-base font-semibold text-gray-700 mb-3">1. Quanto você gostaria de doar?</label>
-                            <div class="grid grid-cols-3 gap-3 amount-grid">
-                                <!-- Botões de Valor -->
-                                <button type="button" data-value="10.00" class="amount-btn py-3 rounded-lg">R$ 10,00</button>
-                                <button type="button" data-value="50.00" class="amount-btn py-3 rounded-lg selected">R$ 50,00</button>
-                                <button type="button" data-value="100.00" class="amount-btn py-3 rounded-lg">R$ 100,00</button>
-                            </div>
-                            <input type="number" step="0.01" min="1.00" id="customAmount" name="customAmount" placeholder="Outro valor..." class="w-full custom-input-style mt-3" value="50.00">
-                        </div>
-
-                        <!-- Seleção de Frequência -->
-                        <div>
-                            <label class="block text-base font-semibold text-gray-700 mb-3">2. Qual a frequência?</label>
-                            <div class="flex gap-4 frequency-selection">
-                                <!-- Botões de Frequência -->
-                                <button type="button" data-freq="Unica" class="frequency-btn flex-1 py-3 rounded-lg">Doação Única</button>
-                                <button type="button" data-freq="Mensal" class="frequency-btn flex-1 py-3 rounded-lg selected">Mensal</button>
-                            </div>
-                            <input type="hidden" id="donationFrequency" name="donationFrequency" value="Mensal">
-                            <input type="hidden" id="donationAmount" name="donationAmount" value="50.00"> 
-                        </div>
-
-                        <!-- Forma de Pagamento -->
-                        <div>
-                            <label for="paymentMethod" class="block text-base font-semibold text-gray-700 mb-3">3. Escolha a forma de pagamento *</label>
-                            <select id="paymentMethod" name="paymentMethod" required class="w-full custom-input-style appearance-none">
-                                <option value="" disabled selected>Selecione uma opção</option>
-                                <option value="pix">Pix</option>
-                                <option value="credit_card">Cartão de Crédito</option>
-                                <option value="boleto">Boleto</option>
-                            </select>
-                        </div>
-
-                        <!-- Resumo e Ação Final -->
-                        <div class="pt-6 border-t border-gray-200">
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="text-xl font-medium text-gray-700">Total a Pagar:</span>
-                                <span id="finalAmountText" class="text-3xl font-extrabold text-green-600">R$ 50,00</span>
-                            </div>
-                            
-                            <!-- O botão de submissão do formulário -->
-                            <button type="submit" id="submitDonationBtn" class="btn-primary w-full text-white font-semibold py-3 rounded-lg shadow-xl hover:shadow-2xl">
-                                Confirmar Doação e Pagar
-                            </button>
-                        </div>
-
-                        <!-- Botão Voltar -->
-                        <button type="button" id="prevStepBtn" class="text-sm text-gray-500 w-full mt-4 hover:text-gray-700 transition duration-150">
-                            ← Voltar aos Dados Pessoais
-                        </button>
-                    </div>
-                </form>
-
-                <!-- Loading e Mensagem de Status -->
-                <div id="statusMessage" class="hidden text-center p-8">
-                    <p id="statusText" class="text-xl font-semibold text-gray-700 mb-4"></p>
-                    <div id="spinner" class="hidden animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-green-500 mx-auto my-6"></div>
-                    <button type="button" id="resetBtn" class="hidden btn-primary text-white font-semibold py-2 px-6 rounded-lg mt-4 shadow-md">
-                        Fazer Nova Doação
-                    </button>
+            <div id="etapa1" class="form-column dados-pessoais">
+                <h2>Doe Agora</h2>
+                
+                <div class="input-group">
+                    <label for="nome">Nome *</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <span class="error-message" id="nome-error"></span>
                 </div>
-            </div>
-        </div>
-    </main>
 
-    <!-- Link para o arquivo JavaScript -->
-    <script src="script.js"></script>
+                <div class="input-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="telefone">Número de telefone</label>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+                
+                <div class="form-row split-inputs">
+                    <div class="input-group">
+                        <label for="dataNascimento">Data de Nascimento</label>
+                        <input type="date" id="dataNascimento" name="dataNascimento">
+                    </div>
+                    <div class="input-group">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo" name="sexo">
+                            <option value="">Selecione</option>
+                            <option value="F">Feminino</option>
+                            <option value="M">Masculino</option>
+                            <option value="O">Outro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="comoConheceu">Como você nos conheceu?</label>
+                    <select id="comoConheceu" name="comoConheceu">
+                        <option value="">Selecione</option>
+                        <option value="redes">Redes Sociais</option>
+                        <option value="amigo">Amigo</option>
+                        <option value="busca">Busca Online</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="comunicacoes" name="comunicacoes">
+                    <label for="comunicacoes">Sim, por favor. Desejo receber essas comunicações.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    <label for="termos">Estou de acordo com as <a href="#">Políticas de Privacidade</a>.</label>
+                </div>
+
+                <button type="button" class="submit-btn next-btn" onclick="proximaEtapa()">Próximo: Detalhes da Doação</button>
+            </div>
+
+
+            <div id="etapa2" class="form-column dados-doacao" style="display:none;">
+                <h2>Doe Agora</h2>
+                <p class="subtitle">Escolha sua doação:</p>
+
+                <div class="valor-options">
+                    <input type="radio" id="valor1" name="valorDoacao" value="1.00" required>
+                    <label for="valor1" class="valor-box">1,00</label>
+
+                    <input type="radio" id="valor50" name="valorDoacao" value="50.00">
+                    <label for="valor50" class="valor-box">50,00</label>
+
+                    <input type="radio" id="valor20" name="valorDoacao" value="20.00">
+                    <label for="valor20" class="valor-box">20,00</label>
+
+                    <input type="radio" id="outroValor" name="valorDoacao" value="Outro">
+                    <label for="outroValor" class="valor-box outro-valor">Outro Valor..</label>
+                </div>
+                
+                <div class="input-group" id="outro-valor-input" style="display:none;">
+                    <label for="valorPersonalizado">Digite o valor que deseja doar (R$)</label>
+                    <input type="number" id="valorPersonalizado" name="valorPersonalizado" min="1" step="0.01">
+                </div>
+                
+                <div class="recorrencia-options">
+                    <input type="radio" id="recorrenciaMensal" name="recorrencia" value="Mensal" required>
+                    <label for="recorrenciaMensal" class="recorrencia-box mensal">Mensal</label>
+
+                    <input type="radio" id="recorrenciaUnica" name="recorrencia" value="Unica">
+                    <label for="recorrenciaUnica" class="recorrencia-box unica">Única</label>
+                </div>
+
+                <div class="input-group">
+                    <label for="documento">CPF OU RG *</label>
+                    <input type="text" id="documento" name="documento" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="formaPagamento">FORMA DE PAGAMENTO *</label>
+                    <select id="formaPagamento" name="formaPagamento" required>
+                        <option value="">Selecione</option>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="boleto">Boleto</option>
+                        <option value="pix">PIX</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn juntar-se">DOAR</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="./js/doacao.js"></script>
 </body>
 </html>
-    
-    
