@@ -1,381 +1,361 @@
-
+/* --- 1. VARIÁVEIS E RESET BÁSICO --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    /* Paleta de Cores de Alto Contraste */
+    --cor-principal: #1B5E20; /* Verde Floresta (mais profundo e forte) */
+    --cor-destaque: #66BB6A;  /* Verde Folha (vibrante para links e ícones) */
+    --cor-fundo-suave: #F0FFF0; /* Fundo suave geral (Quase branco, mas não puro) */
+    --cor-texto: #333333;
+    --branco: #ffffff;
+    --sombra-leve: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
 body {
-    background-color: #eafae9;
-    color: #2d2d2d;
-    overflow-x: hidden; 
+    background-color: var(--branco); 
+    color: var(--cor-texto);
+    font-family: 'Open Sans', Arial, sans-serif; 
+    line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* Tipografia */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700;
+    color: var(--cor-principal);
+}
 
-header, footer {
-    height: 70px;
-    background-color: rgba(255, 255, 255, 0.85); 
-    backdrop-filter: blur(100px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    flex-shrink: 0;
+strong {
+    font-weight: 700;
+    color: var(--cor-destaque);
+}
+
+/* --- ESTILO DO HEADER (O seu "quadrado esticado" com o título) --- */
+header {
+    width: 100%; /* LARGURA TOTAL */
+    padding: 80px 20px; /* BOM ESPAÇO INTERNO/ALTURA */
+    background-color: var(--cor-fundo-suave); /* Fundo suave para contraste */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
+    text-align: center; /* CENTRALIZA o título */
+}
+
+header h1 {
+    font-size: 3em; /* Título bem grande e visível */
+    margin: 0;
+    color: var(--cor-principal);
+}
+
+/* Estilos de Layout Full Width (Reutilizável) */
+main {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.full-width-section {
+    width: 100%;
+    padding: 60px 0;
+}
+
+.content-wrapper {
+    max-width: 1100px; /* Limite do conteúdo interno */
+    margin: 0 auto;
     padding: 0 20px;
 }
 
-header {
-    top: 0;
-    position: sticky;
-}
-
-footer {
-    bottom: 0;
-    margin-top: auto;
-}
-
-
-main {
-    flex-grow: 1;
-    padding: 90px 0 100px 0; 
-    max-width: none; 
-    margin: 0; 
-    position: relative;
-    width: 100%; 
-}
-
-section {
-    margin: 30px 0; 
-    padding: 30px 5%; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1); 
-    background-color: #ffffff; 
-    text-align: center; 
-}
-
-
-.blur-section {
-    background-color: rgba(255, 255, 255, 0.85); 
-    backdrop-filter: blur(100px);
-}
-
-
-.verde-box {
-    background-color: #2e7d32; 
-    color: white; 
-    padding: 30px 5%; 
-    border-radius: 12px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-
+/* Títulos das Seções (H2) */
 h2 {
-    color: #2e7d32; 
-    margin-bottom: 15px; 
-    font-size: 1.8em;
+    font-size: 2.2em; 
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
 }
 
-
-.verde-box h2 {
-    color: white;
+h2::after {
+    content: '';
+    display: block;
+    width: 60px; 
+    height: 4px; 
+    background-color: var(--cor-destaque); 
+    margin: 10px auto 0 auto; 
+    border-radius: 2px;
 }
 
 p {
-    margin-top: 10px;
-    line-height: 1.6;
+    font-size: 1.1em; 
+    max-width: 900px; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+/* --- 2. SEÇÃO 1: BANNER DE IMAGEM --- */
+.banner-imagem-destaque {
+    padding: 0; 
+    height: 450px; 
+    overflow: hidden; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.banner-imagem-destaque img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* --- 3. SEÇÃO 2: HISTÓRIA E JORNADA (Grid Cronológico) --- */
+.história-jornada {
+    background-color: var(--branco);
+}
+
+.história-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.história-item {
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+    transition: transform 0.3s ease;
+}
+
+.história-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.história-item i {
+    font-size: 3em;
+    color: var(--cor-destaque);
+    margin-bottom: 15px;
+}
+
+.história-item h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.história-item p {
+    text-align: center;
+    font-size: 0.95em;
+    max-width: none;
+}
+
+
+/* --- 4. SEÇÃO 3: IMPACTO E VALORES (Alternância com Imagens) --- */
+.impacto-valores {
+    background-color: var(--cor-fundo-suave); 
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.valor-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin: 60px 0;
+}
+
+.valor-row.reverse-row {
+    flex-direction: row-reverse;
+}
+
+.valor-texto {
+    flex: 1 1 50%;
+    text-align: left;
+}
+
+.valor-texto h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.valor-texto i {
+    color: var(--cor-destaque);
+    margin-right: 10px;
+}
+
+.valor-imagem {
+    flex: 1 1 50%;
+}
+
+.valor-imagem img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: var(--sombra-leve);
+}
+
+.saiba-mais {
+    display: inline-block;
+    color: var(--cor-destaque);
+    font-weight: 600;
+    margin-top: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.saiba-mais:hover {
+    color: var(--cor-principal);
+    text-decoration: underline;
+}
+
+/* --- 5. COMO AGIMOS: VOLUNTÁRIOS E EMPRESAS (Novo Bloco) --- */
+.como-agimos {
+    background-color: var(--branco); 
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.info-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.info-card {
+    flex: 1;
+    background-color: var(--cor-fundo-suave); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+    text-align: left;
+    border-left: 5px solid var(--cor-destaque);
+}
+
+.info-card h3 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    color: var(--cor-principal);
+}
+
+.info-card i {
+    color: var(--cor-destaque);
+    margin-right: 8px;
+}
+
+.info-card p {
     font-size: 1em;
-    max-width: 800px; 
+    margin-bottom: 20px;
+    max-width: none;
+}
+
+
+/* --- 6. SEÇÃO 4: PROJETOS E CHAMADA PARA AÇÃO FINAL --- */
+.cta-final-projetos {
+    background-color: var(--cor-fundo-suave); 
+    color: var(--cor-texto);
+    text-align: center;
+    padding: 80px 0;
+    border-top: 5px solid var(--cor-destaque);
+}
+
+.cta-final-projetos h2 {
+    color: var(--cor-principal); 
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.cta-final-projetos p {
+    color: var(--cor-texto);
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
-
-.verde-box p {
-    color: white;
+.cta-final-projetos h2::after {
+    background-color: var(--cor-destaque);
 }
 
-
-.our-journey-section {
-    background-color: #ffffff; 
-    text-align: center;
-    margin: 30px 0;
-    padding: 30px 5%; 
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
-
-.our-journey-section h2 {
-    color: #2e7d32;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-}
-
-.journey-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; 
-    justify-content: center;
-    align-items: stretch;
-}
-
-.journey-card {
-    flex: 1 1 250px;
-    background-color: #d1f7d1; 
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.journey-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-}
-
-.journey-card img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin: 0 auto 15px auto;
-    background-color: #2e7d32;
-    border-radius: 50%;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.journey-card h3 {
-    color: #2e7d32;
-    margin-bottom: 10px;
-    font-size: 1.3em;
-}
-
-.journey-card p {
-    color: #2d2d2d;
-    font-size: 1em;
-    line-height: 1.6;
-    flex-grow: 1;
-    margin-bottom: 15px;
-    max-width: none; 
-}
-
-.cta-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
+.cta-botoes button {
+    padding: 15px 30px;
     border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    font-weight: normal;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 10px;
-    display: inline-block;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
 }
 
-.cta-button:hover {
-    background-color: #388e3c;
-    transform: translateY(-2px);
+/* Botão principal (Doação) */
+.cta-principal {
+    background-color: var(--cor-principal); 
+    color: var(--branco);
 }
 
-
-.what-we-do {
-    background-color: #ffffff;
-    text-align: left;
-    padding: 30px 5%; 
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    border-radius: 12px;
-    margin-bottom: 30px;
+.cta-principal:hover {
+    background-color: #0d4812;
+    transform: translateY(-3px);
 }
 
-.what-we-do h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
-    color: #2e7d32;
+/* NOVO BOTÃO: Parceiro Empresarial (Destaque) */
+.cta-terciario {
+    background-color: var(--cor-destaque); 
+    color: var(--cor-principal);
+    font-weight: 800; 
 }
 
-.content-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center; 
-    gap: 30px;
-    margin-bottom: 40px;
+.cta-terciario:hover {
+    background-color: #A5D6A7;
+    transform: translateY(-3px);
 }
 
-.content-row:last-of-type {
-    margin-bottom: 0;
+/* Botão secundário (Voluntário) */
+.cta-secundario {
+    background-color: transparent;
+    color: var(--cor-principal);
+    border: 2px solid var(--cor-principal);
 }
 
-.text-block {
-    flex: 1 1 45%;
-    min-width: 300px;
-}
-
-.text-block p {
-    font-size: 1.05em;
-    line-height: 1.7;
-    color: #2d2d2d;
-    margin-top: 0;
-    text-align: left;
-    max-width: none; 
-}
-
-.image-block {
-    flex: 1 1 45%;
-    min-width: 300px;
-}
-
-.image-block img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    display: block;
-    margin: 0;
-}
-
-.content-row.reverse-row {
-    flex-direction: row-reverse;
+.cta-secundario:hover {
+    background-color: var(--cor-principal);
+    color: var(--branco);
+    transform: translateY(-3px);
 }
 
 
-.combined-section {
-    padding: 50px 5%;
-    border-radius: 0; 
-    box-shadow: none; 
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.combined-section hr.section-divider {
-    border: 0;
-    height: 1px;
-    background-color: #e0e0e0;
-    margin: 30px auto;
-    width: 50%;
-}
-
-
-.call-to-action {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 30px;
-    padding: 30px 5%; 
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
-
-.call-to-action img {
-    max-width: 70%;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.call-to-action p {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #2e7d32;
-    max-width: 700px; 
-}
-
-
-@media (max-width: 768px) {
-    main {
-        padding: 70px 0 80px 0; 
+/* --- 7. RESPONSIVIDADE --- */
+@media (max-width: 992px) {
+    .história-grid {
+        grid-template-columns: 1fr;
     }
-
-    section {
-        padding: 25px 4%; 
-        margin: 20px 0;
-    }
-
-    .blur-section, .verde-box, .our-journey-section, .what-we-do, .our-pillars-section, .highlighted-projects, .call-to-action {
-        padding: 25px 4%; 
-    }
-
-    h2 {
-        font-size: 1.6em;
-        margin-bottom: 10px;
-    }
-
-    p {
-        font-size: 0.95em;
-    }
-
-   
-    .journey-card {
-        flex: 1 1 calc(50% - 10px); 
-    }
-
     
-    .content-row, .pillars-content {
+    .valor-row {
         flex-direction: column;
-        text-align: center;
-        gap: 20px;
     }
 
-    .text-block, .image-block {
-        flex: 1 1 100%;
-        min-width: unset;
+    .valor-row.reverse-row {
+        flex-direction: column; 
     }
 
-    .text-block p {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+    .valor-imagem img {
+        height: 300px;
     }
 
-    
-    .cta-button {
-        padding: 8px 15px;
-        font-size: 0.95em;
+    .info-container {
+        flex-direction: column;
     }
 
-    .call-to-action img {
-        max-width: 90%;
+    .cta-botoes button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
     }
-}
-
-@media (max-width: 480px) {
-    main {
-        padding: 60px 0 70px 0;
-    }
-
-    section {
-        padding: 20px 3%;
-        margin: 15px 0;
-    }
-
-    .blur-section, .verde-box, .our-journey-section, .what-we-do, .our-pillars-section, .highlighted-projects, .call-to-action {
-        padding: 20px 3%;
-    }
-
-    h2 {
-        font-size: 1.4em;
-    }
-
-    .journey-card {
-        flex: 1 1 100%;
-    }
-}
-
-.footer-content {
-    font-size: 0.9em;
-    color: #555;
 }
