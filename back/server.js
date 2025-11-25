@@ -1,4 +1,4 @@
-// server.js
+o// server.js
 
 // 1. Importações Essenciais
 const express = require('express');
@@ -17,7 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // 3. Configuração de Rotas
 const contatoRoutes = require('./routes/contatoRoutes');
+const authRoutes = require('./routes/authRoutes');
+
 app.use('/api/contato', contatoRoutes); 
+app.use('/api/auth', authRoutes);
 
 // 4. Inicialização
 const PORT = process.env.PORT || 3001;
